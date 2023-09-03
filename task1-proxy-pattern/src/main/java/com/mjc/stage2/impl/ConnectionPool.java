@@ -43,7 +43,7 @@ public class ConnectionPool {
             usedConnections.remove(connection);
             freeConnections.offer((ProxyConnection) connection);
         } else {
-            throw new IllegalArgumentException(String.format("Wrong connection is detected: %s, should be ProxyConnection.class ", connection.getClass()));
+            throw new IllegalConnectionException(String.format("Wrong connection is detected: %s, should be ProxyConnection.class ", connection.getClass()));
         }
     }
 
