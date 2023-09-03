@@ -2,7 +2,9 @@ package com.mjc.stage2.impl;
 
 
 import com.mjc.stage2.Connection;
+import lombok.Getter;
 
+@Getter
 public class RealConnection implements Connection {
     private String url;
     private String login;

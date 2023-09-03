@@ -13,8 +13,8 @@ public class ConnectionPool {
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
     private static ConnectionPool instance;
-    private Queue<ProxyConnection> freeConnections;
-    private Queue<ProxyConnection> usedConnections;
+    private final Queue<ProxyConnection> freeConnections;
+    private final Queue<ProxyConnection> usedConnections;
 
     private ConnectionPool() {
         freeConnections = new ArrayDeque<>(POOL_SIZE);
@@ -43,7 +43,7 @@ public class ConnectionPool {
             usedConnections.remove(connection);
             freeConnections.offer((ProxyConnection) connection);
         } else {
-            throw new RuntimeException(String.format("Wrong connection is detected: %s, should be ProxyConnection.class ", connection.getClass()));
+            throw new IllegalArgumentException(String.format("Wrong connection is detected: %s, should be ProxyConnection.class ", connection.getClass()));
         }
     }
 
